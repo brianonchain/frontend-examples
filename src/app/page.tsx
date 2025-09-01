@@ -1,5 +1,5 @@
 import Image from "next/image";
 
-export default function Home() {
-  return <div className="">page</div>;
+export default function Landing() {
+  return <div className="landingPageWidth">page</div>;
 }

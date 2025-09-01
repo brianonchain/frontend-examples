@@ -1,0 +1,67 @@
+/*--- button colors ---*/
+
+@utility button1Color {
+  @apply button1ColorLight dark:bg-darkButton dark:border-darkButton dark:desktop:hover:bg-darkButtonHover dark:desktop:hover:border-darkButtonHover dark:active:bg-darkButtonHover dark:active:border-darkButtonHover dark:text-white;
+}
+
+@utility button2Color {
+  @apply desktop:hover:text-slate-400 border-2 border-current bg-transparent text-slate-500 active:text-slate-400;
+}
+
+@utility button1ColorLight {
+  @apply bg-lightButton border-lightButton desktop:hover:bg-lightButtonHover desktop:hover:border-lightButtonHover active:bg-lightButtonHover active:border-lightButtonHover border-2 text-white [transition:background-color_300ms,border-color_300ms] focus-visible:outline-black;
+}
+
+@utility buttonRedColor {
+  @apply desktop:hover:bg-red-500 desktop:hover:border-red-500 border-2 border-red-400 bg-red-400 text-white [transition:background-color_300ms,border-color_300ms] focus-visible:outline-black active:border-red-500 active:bg-red-500;
+}
+
+@utility buttonPendingColor {
+  @apply border-2 border-slate-500 bg-slate-500 text-white dark:border-slate-500 dark:bg-slate-500 dark:text-white;
+}
+
+@utility buttonDisabledColor {
+  @apply disabled:bg-slate-500! disabled:border-slate-500! disabled:pointer-events-none;
+}
+
+/*--- button font ---*/
+
+@utility appButtonFont {
+  @apply textBaseApp font-medium leading-none;
+}
+
+/*--- button height ---*/
+
+@utility appButtonHeight {
+  @apply portrait:sm:h-15 landscape:lg:h-15 desktop:h-11! h-14 flex-none;
+}
+
+@utility appButtonHeightSm {
+  @apply desktop:h-10! h-11 portrait:sm:h-[52px] landscape:lg:h-[52px];
+}
+
+/*--- app buttons ---*/
+
+.appButton1 {
+  @apply button1Color appButtonHeight appButtonFont flex items-center justify-center rounded-lg px-[20px];
+}
+
+.appButton2 {
+  @apply button2Color appButtonHeight appButtonFont flex items-center justify-center rounded-[8px];
+}
+
+.appButton1Light {
+  @apply button1ColorLight appButtonHeight appButtonFont flex items-center justify-center rounded-[8px];
+}
+
+.appButtonRed {
+  @apply buttonRedColor appButtonHeight appButtonFont flex items-center justify-center rounded-[8px];
+}
+
+.appButtonPending {
+  @apply buttonPendingColor appButtonHeight appButtonFont flex items-center justify-center rounded-[8px];
+}
+
+.enterAppButton {
+  @apply button1Color appButtonHeightSm appButtonFont mb-1.5 flex flex-none items-center justify-center rounded-full px-[1.1em] lg:mb-0;
+}

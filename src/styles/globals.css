@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "./buttons.css";
+@import "./inputs.css";
+@import "./texts.css";
+@import "./modals.css";
+@import "./app.css";
+@import "./landing.css";
+@import "./login.css";
+@import "./animations.css";
+@import "./stripe.css";
+
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+}
+
+@custom-variant desktop {
+  @media (hover: hover) and (pointer: fine) {
+    @slot;
+  }
+}
+
+/* needed if hover is used to reveal tooltips */
+@custom-variant hover {
+  &:hover {
+    @slot;
+  }
+}
+
+@theme {
+  --color-light1: #f9f9f9;
+  --color-light2: #eef3f7;
+  --color-light3: #e2e8f0;
+  --color-light4: #cbd5e1;
+  --color-light5: #b0bdcd;
+  --color-lightText1: #212427;
+  --color-lightButton: #009fd1;
+  --color-lightButtonHover: #008fbc;
+  --color-dark1: #000000;
+  --color-dark2: #111114;
+  --color-dark3: #1a1a1f;
+  --color-dark4: #222127;
+  --color-dark5: #2e2d35;
+  --color-dark6: #35343b;
+  --color-darkText1: #e2e8f0;
+  --color-darkButton: #5370a7;
+  --color-darkButtonHover: #6983b2;
+  --color-slate-250: #d5dde7;
+  --color-githubBlue: #030642;
+  --color-githubDarkBlue: #0d1117;
+  --color-stripePurple: #635bff;
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 750px;
+  --breakpoint-lg: 980px;
+  --breakpoint-xl: 1250px;
+}
+
+@layer base {
+  h1 {
+    @apply text-center text-5xl font-semibold;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.landingChip {
+  @apply textSmApp mr-1 rounded-md bg-slate-200 px-2 py-1 font-medium text-slate-600;
+}
+
+/* --- tooltips --- */
+
+.tooltip {
+  @apply desktop:px-[12px] desktop:py-[8px] z-1 invisible absolute rounded-lg border border-slate-500 bg-slate-800 px-[16px] py-[12px] text-white group-hover:visible;
+}
+
+/* other utilities */
+
+@utility skeleton {
+  @apply text-transparent! dark:bg-dark5 animate-pulse rounded-md bg-slate-300;
+}
+
+@utility textGray {
+  @apply text-slate-500 dark:text-slate-500;
+}
+
+@utility dotted {
+  @apply cursor-pointer text-blue-600 underline decoration-blue-600 decoration-dotted underline-offset-[3px] dark:text-blue-400 dark:decoration-blue-400;
+}
+
+@utility dottedLight {
+  @apply cursor-pointer text-blue-600 underline decoration-blue-600 decoration-dotted underline-offset-[3px];
+}
+
+@utility dottedDark {
+  @apply cursor-pointer text-blue-400 underline decoration-blue-400 decoration-dotted underline-offset-[3px];
+}
+
+@utility link {
+  @apply desktop:hover:underline cursor-pointer text-blue-600 focus:underline active:underline dark:text-blue-400;
+}
+
+@utility linkLight {
+  @apply desktop:hover:underline cursor-pointer text-blue-600 focus:underline active:underline;
+}
+
+@utility linkDark {
+  @apply xs:hover:underline cursor-pointer text-blue-400 active:underline;
+}
+
+/* Infinite scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+}
+
+.underlineAni::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: oklch(80.9% 0.105 251.813);
+  transition: transform 300ms;
+  transform: scale(0);
+  transform-origin: left;
+}
+
+.underlineAni:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}

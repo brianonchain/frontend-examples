@@ -1,0 +1,23 @@
+.menuBold {
+  @apply text-base font-semibold text-slate-800;
+}
+
+.landingPageWidth {
+  @apply px-3 xs:px-6 lg:px-8 w-full max-w-[calc(650px+8rem)];
+}
+
+.landingWhiteCard {
+  @apply desktop:px-6 desktop:py-4 desktop:gap-4 flex w-full flex-col items-center gap-2 rounded-xl bg-white px-3 py-2 shadow-[0px_1px_16px_0px_rgba(30,50,130,0.15)] lg:flex-row portrait:sm:gap-6 portrait:sm:px-6 portrait:sm:py-4 landscape:lg:gap-6 landscape:lg:px-6 landscape:lg:py-4;
+}
+
+.landingChip {
+  @apply textSmApp mr-1 rounded-md bg-slate-200 px-2 py-1 font-medium text-slate-600;
+}
+
+.footerHeader {
+  @apply underline underline-offset-2;
+}
+
+.footerLink {
+  @apply desktop:hover:text-blue-400 cursor-pointer active:text-blue-400;
+}

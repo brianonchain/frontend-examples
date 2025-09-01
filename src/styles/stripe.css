@@ -1,0 +1,38 @@
+.moving-gradients {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  background-image: radial-gradient(circle at 50% 50%, oklch(83.7% 0.128 66.29 / 0.5), transparent 80%),
+    radial-gradient(circle at 50% 50%, oklch(58.6% 0.253 17.585 / 0.75), transparent 100%), radial-gradient(circle at 50% 50%, oklch(54.6% 0.245 262.881), transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  animation: moveGradients 15s linear infinite;
+}
+
+@keyframes moveGradients {
+  0%,
+  100% {
+    background-position: 0% 75%, 50% 100%, 100% 75%;
+  }
+  25% {
+    background-position: 50% 100%, 100% 75%, 50% 50%;
+  }
+  50% {
+    background-position: 100% 75%, 50% 50%, 0% 75%;
+  }
+  75% {
+    background-position: 50% 50%, 0% 75%, 50% 100%;
+  }
+}
+
+.stripeHeader {
+  @apply text-4xl text-slate-900 font-bold leading-[1.2];
+}
+
+.stripeBold {
+  @apply font-bold text-stripePurple;
+}
+
+.stripeButton {
+  @apply bg-stripePurple text-white px-4 py-1.5 rounded-full font-semibold text-base hover:bg-slate-900 transition-all duration-[300ms] ease-in-out;
+}

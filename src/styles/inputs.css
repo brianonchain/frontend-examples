@@ -1,0 +1,101 @@
+/* input modifications */
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dark input[type="checkbox"]:checked {
+  background-color: "#5370A7";
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* autotfill */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px rgb(255, 255, 255) inset !important;
+}
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active,
+.dark select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset !important;
+}
+
+@utility selectNoArrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: none;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+/* --- input colors --- */
+
+@utility appInputHeight {
+  @apply desktop:h-[46px]! h-[54px] portrait:sm:h-[58px] landscape:lg:h-[58px];
+}
+
+@utility inputColor {
+  @apply dark:bg-dark1 text-lightText1 dark:text-darkText1 dark:border-dark5 outline-hidden placeholderStyle rounded-[8px] border-[1.5px] border-slate-300 bg-white transition-all duration-[500ms] focus:border-blue-500 focus:ring-0 dark:focus:border-slate-600;
+}
+
+@utility inputColorLight {
+  @apply text-lightText1 outline-hidden placeholderStyle rounded-[8px] border-[1.5px] border-slate-300 bg-white transition-all duration-[500ms] focus:border-blue-500 focus:ring-0;
+}
+
+@utility settingsInputColor {
+  @apply dark:focus:bg-dark1 text-lightText1 dark:text-darkText1 focus:text-lightText1! dark:focus:text-darkText1! outline-hidden placeholderStyle desktop:group-hover:text-slate-500 rounded-[8px] border-[1.5px] border-transparent bg-transparent transition-all duration-[500ms] focus:border-blue-500 focus:bg-white focus:ring-0 dark:focus:border-slate-600;
+}
+
+@utility checkboxColor {
+  @apply bg-light1 dark:bg-dark1 dark:border-dark5 checked:bg-lightButton dark:checked:bg-darkButton rounded-[8px] border-[1.5px] border-slate-300 checked:border-none focus:border-blue-500 focus:ring-0 focus:ring-offset-0 dark:focus:border-slate-600;
+}
+
+@utility textInputAppLg {
+  @apply desktop:text-[16px]! text-[20px] portrait:sm:text-[24px] landscape:lg:text-[24px];
+}
+
+@utility placeholderStyle {
+  @apply placeholder:italic placeholder:text-slate-400 focus:placeholder:text-transparent dark:placeholder:text-zinc-700;
+}
+
+/* --- app input --- */
+
+.appInput {
+  @apply textBaseApp appInputHeight inputColor px-[0.7em];
+}
+
+.appInputPx {
+  @apply textBaseAppPx appInputHeight inputColor px-[0.7em];
+}
+
+.appInputLightPx {
+  @apply textBaseAppPx appInputHeight inputColorLight px-[0.7em];
+}
+
+.appInputSmPx {
+  @apply textSmAppPx appInputHeight inputColor px-[0.7em];
+}
+
+.appInputSmLightPx {
+  @apply textSmAppPx appInputHeight inputColorLight px-[0.7em];
+}
+
+.appInputLabel {
+  @apply pb-[4px] font-medium;
+}
+
+/* --- input elements --- */
+
+.checkbox {
+  @apply desktop:w-[28px] desktop:h-[28px] checkboxColor h-[36px] w-[36px] cursor-pointer;
+}
