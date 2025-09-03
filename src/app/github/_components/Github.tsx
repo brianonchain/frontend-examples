@@ -67,10 +67,8 @@ export default function Github() {
 
         <Sponsors />
 
-        <div className="px-3 sm:px-10 w-full max-w-[calc(1200px+10rem)] flex flex-col items-center">
-          <Accelerate />
-          <div className="w-full h-screen"></div>
-        </div>
+        <Accelerate />
+        <div className="w-full h-[300px]"></div>
       </div>
     </div>
   );
