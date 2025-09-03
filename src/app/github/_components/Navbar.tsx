@@ -76,7 +76,7 @@ export default function Navbar() {
               exit={{ opacity: 0, x: "-100%", transition: { duration: 0 } }}
             >
               {mobileItems.map((i) => (
-                <p>{i}</p>
+                <p key={i}>{i}</p>
               ))}
             </motion.aside>
           </>
