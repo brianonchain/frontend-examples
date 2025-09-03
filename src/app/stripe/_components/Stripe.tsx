@@ -3,6 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Hero from "./Hero";
 import { AnimatePresence } from "framer-motion";
+// graphics
+import Graphic1 from "./graphics/Graphic1";
+import Graphic2 from "./graphics/Graphic2";
+import Graphic3 from "./graphics/Graphic3";
 
 const heroFunctions = [
   { name: "Code", index: 0 },
@@ -35,21 +39,23 @@ export default function Stripe() {
     return () => observer.disconnect();
   }, []);
 
+  console.log(activeIndex);
+
   return (
     <div className="w-full flex flex-col items-center text-slate-800">
       {/*--- gradient background (2 divs needed to prevent x-overflow) ---*/}
       <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="moving-gradients [clip-path:polygon(0_0,100%_0,100%_40%,0_80%)]"></div>
+        <div className="moving-gradients [clip-path:polygon(0_0,100%_0,100%_30%,0_40%)] lg:[clip-path:polygon(0_0,100%_0,100%_40%,0_80%)]"></div>
       </div>
 
-      <div className="px-3 xs:px-8 lg:px-12 w-full max-w-[1200px] relative">
+      <div className="px-8 lg:px-12 w-full max-w-[1200px] relative">
         <Hero />
 
         <div className="w-full flex">
           {/*--- Text column ---*/}
-          <div className="w-[40%] text-lg font-medium">
+          <div className="lg:w-[40%] text-lg font-medium">
             <div
-              className="h-[700px] flex items-center"
+              className="lg:h-[700px] flex items-center"
               data-index={0}
               ref={(el) => {
                 blocksRef.current[0] = el;
@@ -64,8 +70,12 @@ export default function Stripe() {
                 </p>
               </div>
             </div>
+            <div className="lg:hidden">
+              <Graphic1 />
+            </div>
+
             <div
-              className="h-[700px] flex items-center"
+              className="lg:h-[700px] flex items-center"
               data-index={1}
               ref={(el) => {
                 blocksRef.current[1] = el;
@@ -90,8 +100,12 @@ export default function Stripe() {
                 </div>
               </div>
             </div>
+            <div className="lg:hidden">
+              <Graphic2 />
+            </div>
+
             <div
-              className="h-[700px] flex items-center"
+              className="lg:h-[700px] flex items-center"
               data-index={2}
               ref={(el) => {
                 blocksRef.current[2] = el;
@@ -116,54 +130,18 @@ export default function Stripe() {
                 </div>
               </div>
             </div>
+            <div className="lg:hidden">
+              <Graphic3 />
+            </div>
           </div>
 
           {/*--- Sticky column ---*/}
-          <div className="w-[60%]">
+          <div className="hidden lg:block w-[60%]">
             <div className="sticky top-0 h-screen flex items-center justify-center">
               <AnimatePresence mode="wait">
-                {activeIndex === 0 && (
-                  <motion.div
-                    key="one"
-                    className="w-[350px] h-[500px] bg-white/10 rounded-2xl shadow-[0px_0px_20px_0px_#E64D7E] flex items-center justify-center text-5xl font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      transition: { duration: 2, ease: "easeInOut" }, // slower, smoother entrance
-                    }}
-                    exit={{ opacity: 0, transition: { duration: 0.3, ease: "easeOut" } }}
-                  >
-                    1
-                  </motion.div>
-                )}
-                {activeIndex === 1 && (
-                  <motion.div
-                    key="two"
-                    className="w-[350px] h-[500px] bg-white/10 rounded-2xl shadow-[0px_0px_20px_0px_#FF7557] flex items-center justify-center text-5xl font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      transition: { duration: 2, ease: "easeInOut" }, // slower, smoother entrance
-                    }}
-                    exit={{ opacity: 0, transition: { duration: 0.3, ease: "easeOut" } }}
-                  >
-                    2
-                  </motion.div>
-                )}
-                {activeIndex === 2 && (
-                  <motion.div
-                    key="three"
-                    className="w-[350px] h-[500px] bg-white/10 rounded-2xl shadow-[0px_0px_20px_0px_#7769D1] flex items-center justify-center text-5xl font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      transition: { duration: 2, ease: "easeInOut" }, // slower, smoother entrance
-                    }}
-                    exit={{ opacity: 0, transition: { duration: 0.3, ease: "easeOut" } }}
-                  >
-                    3
-                  </motion.div>
-                )}
+                {activeIndex === 0 && <Graphic1 />}
+                {activeIndex === 1 && <Graphic2 />}
+                {activeIndex === 2 && <Graphic3 />}
 
                 {/* <motion.img
                   key={activeIndex}
@@ -180,6 +158,8 @@ export default function Stripe() {
           </div>
         </div>
       </div>
+
+      <div className="w-full h-[300px] bg-white"></div>
     </div>
   );
 }

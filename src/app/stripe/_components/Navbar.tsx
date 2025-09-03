@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaStripe, FaAngleDown, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoIosMenu } from "react-icons/io";
+import AnimatedMobileMenu from "@/utils/components/AnimatedMobileMenu";
 
 // Import dropdown components
 import ProductsMenu from "./menus/ProductsMenu";
@@ -19,14 +20,17 @@ const navItems = [
   { title: "Developers", menu: DevelopersMenu },
 ];
 
+const mobileItems = ["Platform", "Solutions", "Resources", "Open Source", "Enterprise", "Pricing"];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // mobile menu
 
   return (
     <>
-      <div className="relative w-full px-3 md:px-8 py-4 flex items-center justify-between text-white font-medium bg-transparent z-20">
+      <div className="relative w-full h-17 pl-6 pr-8 md:px-8 flex items-center justify-between text-white font-medium bg-transparent z-20">
         {/*--- mobile bars ---*/}
-        <IoIosMenu className="lg:hidden text-4xl" />
+        {/* <IoIosMenu className="lg:hidden text-4xl" /> */}
+        <AnimatedMobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
 
         {/*--- ICON & LINKS ---*/}
         <div className="flex items-center gap-2">
@@ -47,7 +51,7 @@ export default function Navbar() {
         </div>
 
         {/*--- sign in & contact sales ---*/}
-        <div className="flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <button className="">Sign in</button>
           <button className="px-3 h-9">Contact sales</button>
         </div>
@@ -59,19 +63,15 @@ export default function Navbar() {
           <>
             <div className={`fixed inset-0 z-10`} onClick={() => setIsOpen(false)}></div>
             <motion.aside
-              className="fixed left-0 top-0 flex flex-col items-center z-20 w-full h-screen bg-white border-r border-slate-200"
+              className="p-7 fixed left-0 top-17 flex flex-col gap-8 z-20 w-full h-full bg-white rounded-t-2xl text-xl font-semibold"
               key="searchModal"
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, x: "-5%" }}
+              animate={{ opacity: 1, x: 0, transition: { duration: 0.2 } }}
+              exit={{ opacity: 0, x: "-100%", transition: { duration: 0 } }}
             >
-              <div className="flex flex-col items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <FaStripe className="mr-1 text-3xl text-white" />
-                  <p className="text-2xl font-bold">GitHub</p>
-                </div>
-              </div>
+              {mobileItems.map((i) => (
+                <p key={i}>{i}</p>
+              ))}
             </motion.aside>
           </>
         )}

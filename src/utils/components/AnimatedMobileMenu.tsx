@@ -1,6 +1,6 @@
 export default function AnimatedMobileMenu({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (open: boolean) => void }) {
   return (
-    <button onClick={() => setIsOpen(!isOpen)} className="w-[40px] h-[40px] relative">
+    <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden w-[40px] h-[40px] relative">
       {/* Top bar */}
       <div
         className={`absolute h-[3px] left-[8px] top-[8px] bg-white rounded transition-all duration-300 ease-in-out
