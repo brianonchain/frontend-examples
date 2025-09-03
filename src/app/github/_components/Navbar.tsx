@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaGithub, FaAngleDown, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoIosMenu } from "react-icons/io";
+import AnimatedMobileMenu from "@/utils/components/AnimatedMobileMenu";
 
 // Import dropdown components
 import ProductMenu from "./menus/ProductMenu";
@@ -30,7 +31,8 @@ export default function Navbar() {
     <>
       <div className="fixed w-full h-17 px-3 md:px-8 flex items-center justify-between text-white bg-githubBlue z-100">
         {/*--- mobile bars ---*/}
-        <IoIosMenu className="lg:hidden text-4xl text-white" onClick={() => setIsOpen(!isOpen)} />
+        {/* <IoIosMenu className="lg:hidden text-4xl text-white" onClick={() => setIsOpen(!isOpen)} /> */}
+        <AnimatedMobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
 
         {/*--- ICON & LINKS ---*/}
         <div className="flex items-center gap-2">
