@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Chef() {
   return (
-    <div className="p-20 w-full flex items-center justify-evenly bg-slate-100 z-10 ">
+    <div className="px-6 lg:px-20 py-20 w-full flex flex-col lg:flex-row items-center lg:justify-evenly gap-10 lg:gap-0 bg-slate-100 z-10 ">
       <Image src="/food4.jpg" alt="image4" width={1320} height={2048} className="w-[360px] h-[480px] object-cover" />
       <div className="flex flex-col gap-10 max-w-[600px]">
         <div className="flex flex-col gap-4">

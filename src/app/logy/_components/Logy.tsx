@@ -68,7 +68,7 @@ export default function Logy() {
       <SplashScreen />
 
       {/*--- gallery ---*/}
-      <motion.div className={`${isGalleryFixed ? "fixed bottom-0" : "absolute"} w-full`} style={{ opacity: galleryOpacitySpring }}>
+      <motion.div className={`${isGalleryFixed ? "fixed bottom-0" : "absolute"} w-full overflow-x-hidden`} style={{ opacity: galleryOpacitySpring }}>
         <div className="w-full h-screen"></div>
         <div ref={imagesRef} className={`py-24 w-full flex items-center justify-center gap-6 md:gap-16 bg-slate-300`}>
           <div className="flex flex-col gap-6 md:gap-16">
