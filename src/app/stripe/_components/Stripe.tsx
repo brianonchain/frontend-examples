@@ -136,7 +136,7 @@ export default function Stripe() {
           </div>
 
           {/*--- Sticky column ---*/}
-          <div className="hidden lg:block w-[60%]">
+          <div className="hidden lg:block w-[60%] bg-red-300">
             <div className="sticky top-0 h-screen flex items-center justify-center">
               <AnimatePresence mode="wait">
                 {activeIndex === 0 && <Graphic1 />}
@@ -159,7 +159,7 @@ export default function Stripe() {
         </div>
       </div>
 
-      <div className="w-full h-[300px] bg-white"></div>
+      <div className="w-full h-[800px] bg-white"></div>
     </div>
   );
 }
