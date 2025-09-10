@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function SplashScreen() {
   return (
     <motion.div
-      className="fixed inset-0 w-full h-screen flex items-center justify-center bg-white z-100"
+      className="fixed inset-0 w-full h-[100dvh] flex items-center justify-center bg-white z-[101]"
       initial={{ y: 0 }}
       animate={{ y: "-100%", transitionEnd: { display: "none" } }}
       transition={{ duration: 0.5, ease: "linear", delay: 3 }}
