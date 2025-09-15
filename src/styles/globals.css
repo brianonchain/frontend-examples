@@ -8,6 +8,7 @@
 @import "./login.css";
 @import "./animations.css";
 @import "./stripe.css";
+@import "./calendar.css";
 
 @custom-variant dark {
   &:where(.dark, .dark *) {
@@ -46,6 +47,7 @@
   --color-darkText1: #e2e8f0;
   --color-darkButton: #5370a7;
   --color-darkButtonHover: #6983b2;
+  --color-slate-150: #e8edf3;
   --color-slate-250: #d5dde7;
   --color-githubBlue: #030642;
   --color-githubDarkBlue: #0d1117;
@@ -55,6 +57,7 @@
   --breakpoint-md: 750px;
   --breakpoint-lg: 980px;
   --breakpoint-xl: 1250px;
+  --breakpoint-850px: 850px;
 }
 
 @layer base {
@@ -141,4 +144,12 @@
 .underlineAni:hover::after {
   opacity: 1;
   transform: scale(1);
+}
+
+/* .scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+} */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
