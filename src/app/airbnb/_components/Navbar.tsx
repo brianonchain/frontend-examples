@@ -7,7 +7,7 @@ import { type DateRange } from "react-day-picker";
 // images
 import { FaMagnifyingGlass } from "react-icons/fa6";
 // components
-import TopBar from "./TopBar";
+import IconBar from "./IconBar";
 import MobileModal from "./MobileModal";
 import CalendarModal from "./searchbar/CalendarModal";
 import WhereModal from "./searchbar/WhereModal";
@@ -15,7 +15,7 @@ import WhoModal from "./searchbar/WhoModal";
 import SearchButton from "./searchbar/SearchButton";
 import CloseButton from "./searchbar/CloseButton";
 // hooks
-import { useMediaQuery } from "@/utils/hooks";
+import { useMediaQuery, useBodyScrollLock } from "@/utils/hooks";
 // constants
 import { dateMargins, type DateMargin } from "@/utils/constants/airbnb/constants";
 
@@ -23,10 +23,9 @@ export default function Navbar() {
   // refs
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const scrollYRef = useRef(0);
 
   // hooks
-  const is750Up = useMediaQuery("(min-width: 750px)");
+  const isDesktopNav = useMediaQuery("(min-width: 750px) and (min-height: 480px)");
 
   // states
   const [selectedMenu, setSelectedMenu] = useState("Homes");
@@ -39,10 +38,12 @@ export default function Navbar() {
   const [whoCount, setWhoCount] = useState<Record<string, number>>({ Adults: 0, Children: 0, Infants: 0, Pets: 0 });
   const [whoText, setWhoText] = useState("Add guests");
 
-  // if screen >= 750px, then add event listener
+  // hooks that depend on states
+  useBodyScrollLock(mobileModal);
+
+  // if isDesktopNav, then add event listener
   useEffect(() => {
-    if (is750Up) {
-      console.log("event listener added");
+    if (isDesktopNav) {
       const onPointerDown = (e: PointerEvent) => {
         if (!searchRef.current) return;
         if (!searchRef.current.contains(e.target as Node)) {
@@ -52,7 +53,7 @@ export default function Navbar() {
       document.addEventListener("pointerdown", onPointerDown);
       return () => document.removeEventListener("pointerdown", onPointerDown);
     }
-  }, [is750Up]);
+  }, [isDesktopNav]);
 
   // when checkIn date is clicked, the white bar will move to checkOut
   useEffect(() => {
@@ -77,34 +78,6 @@ export default function Navbar() {
     );
   }, [whoCount]);
 
-  // lock screen when mobile modal is open
-  useEffect(() => {
-    if (!mobileModal) return;
-
-    // remember scroll and lock
-    scrollYRef.current = window.scrollY || window.pageYOffset;
-    const y = scrollYRef.current;
-    const body = document.body;
-
-    body.style.position = "fixed";
-    body.style.top = `-${y}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.width = "100%";
-    body.style.overflow = "hidden"; // belt-and-suspenders
-
-    return () => {
-      // unlock and restore scroll
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      body.style.width = "";
-      body.style.overflow = "";
-      window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
-    };
-  }, [mobileModal]);
-
   return (
     <>
       {/*--- MOBILE MODAL ---*/}
@@ -122,16 +95,16 @@ export default function Navbar() {
         whoCount={whoCount}
         setWhoCount={setWhoCount}
         whoText={whoText}
-        is750Up={is750Up}
+        isDesktopNav={isDesktopNav}
         selectedMenu={selectedMenu}
         setSelectedMenu={setSelectedMenu}
       />
       {/*--- NAVBAR ---*/}
-      <div className="sticky w-full h-[150px] md:h-[200px] flex flex-col items-center bg-white shadow-md z-[2]">
-        <div className="px-[20px] xs:px-[24px] md:px-[24px] lg:px-[40px] w-full max-w-[1600px] h-full flex flex-col items-center">
-          {/*--- start your search ---*/}
+      <div className="sticky w-full h-[150px] desktopNav:h-[200px] flex justify-center bg-white shadow-md z-[2]">
+        <div className="px-[24px] lg:px-[40px] w-full max-w-[1600px] h-full flex flex-col items-center">
+          {/*--- mobile: "start your search" ---*/}
           <button
-            className="mt-[12px] md:hidden w-full h-[56px] text-slate-800 font-semibold bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center gap-2"
+            className="desktopNav:hidden mt-[12px] w-full h-[56px] text-slate-800 font-semibold bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center gap-2"
             onClick={() => {
               setMobileModal(true);
               setSelectedSearch("where");
@@ -140,15 +113,14 @@ export default function Navbar() {
             <FaMagnifyingGlass />
             Start your search
           </button>
-
-          <TopBar selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} mobileModal={mobileModal} />
-
-          {/*--- DESKTOP search bar ---*/}
+          {/*--- icon bar ---*/}
+          <IconBar selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} mobileModal={mobileModal} />
+          {/*--- desktop: search bar ---*/}
           <div
             ref={searchRef}
             className={`${
               selectedSearch ? "bg-slate-150" : "bg-white"
-            } hidden md:flex mx-auto my-auto w-full max-w-[850px] h-[64px] rounded-full border border-slate-300 shadow-lg select-none relative`}
+            } hidden desktopNav:flex mx-auto my-auto w-full max-w-[850px] h-[64px] rounded-full border border-slate-300 shadow-lg select-none relative`}
           >
             {/*--- where ---*/}
             <div
@@ -254,12 +226,17 @@ export default function Navbar() {
             <AnimatePresence>
               {selectedSearch && (
                 <motion.div
-                  className={`${selectedSearch === "who" ? "h-auto" : "h-[calc(100dvh-200px-30px)]"} absolute top-[calc(100%+10px)] origin-top max-h-[530px] z-[2]`}
+                  className="absolute top-[calc(100%+10px)] origin-top max-h-[530px] z-[2]"
                   initial={{ left: selectedSearch === "who" ? "50%" : "0%", scale: 0.7 }}
-                  animate={{ width: selectedSearch === "where" || selectedSearch === "who" ? "50%" : "100%", left: selectedSearch === "who" ? "50%" : "0%", scale: 1 }}
+                  animate={{
+                    width: selectedSearch === "where" || selectedSearch === "who" ? "50%" : "100%",
+                    height: selectedSearch === "who" ? "auto" : "calc(100dvh - 200px - 30px)",
+                    left: selectedSearch === "who" ? "50%" : "0%",
+                    scale: 1,
+                  }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  {selectedSearch === "where" && <WhereModal setWhereText={setWhereText} setSelectedSearch={setSelectedSearch} is750Up={is750Up} />}
+                  {selectedSearch === "where" && <WhereModal setWhereText={setWhereText} setSelectedSearch={setSelectedSearch} isDesktopNav={isDesktopNav} />}
                   {(selectedSearch === "checkIn" || selectedSearch === "checkOut") && (
                     <CalendarModal dates={dates} setDates={setDates} dateMargin={dateMargin} setDateMargin={setDateMargin} />
                   )}

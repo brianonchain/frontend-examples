@@ -23,15 +23,15 @@ const whoOptions = [
 
 export default function WhoModal({ whoCount, setWhoCount }: { whoCount: Record<string, number>; setWhoCount: (whoCount: Record<string, number>) => void }) {
   return (
-    <motion.div className="flex-1 md:flex-auto w-full h-full bg-white rounded-[16px] md:rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden">
+    <div className="desktopNav:py-[8px] w-full h-full bg-white rounded-[16px] desktopNav:rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden">
       <motion.div
-        className="px-[12px] md:px-[24px] w-full h-full flex flex-col overflow-y-auto"
+        className="px-[12px] desktopNav:px-[24px] w-full h-full flex flex-col overflow-y-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {whoOptions.map((i, index) => (
-          <div key={i.title} className={`py-[16px] md:py-[24px] flex items-center ${index === 0 ? "" : "border-t"} border-slate-200`}>
+          <div key={i.title} className={`grow desktopNav:flex-auto pt-[16px] desktopNav:py-[20px] flex items-center ${index === 0 ? "" : "border-t"} border-slate-200`}>
             {/*--- text ---*/}
             <div>
               <p className="text-lg font-medium">{i.title}</p>
@@ -75,6 +75,6 @@ export default function WhoModal({ whoCount, setWhoCount }: { whoCount: Record<s
           </div>
         ))}
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

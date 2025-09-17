@@ -17,7 +17,7 @@ export default function CalendarModal({
 }) {
   // hooks
   const defaultClassNames = getDefaultClassNames();
-  const is750Up = useMediaQuery("(min-width: 750px)");
+  const isDesktopNav = useMediaQuery("(min-width: 750px) and (min-height: 480px)");
 
   // states
   const [topOption, setTopOption] = useState("Dates");
@@ -25,11 +25,11 @@ export default function CalendarModal({
 
   return (
     <div
-      className="flex-1 md:flex-auto py-[16px] md:py-[24px] w-full h-full bg-white rounded-[16px] md:rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden"
+      className="flex-1 desktopNav:flex-auto pt-[18px] desktopNav:py-[24px] w-full h-full bg-white rounded-[16px] desktopNav:rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden"
       style={{ scrollbarGutter: "stable" }}
     >
       <motion.div
-        className="px-[12px] md:px-[16px] w-full h-full flex flex-col gap-[20px] items-center overflow-y-auto overflow-x-hidden"
+        className="px-[0px] desktopNav:px-[16px] w-full h-full flex flex-col gap-[20px] items-center overflow-hidden desktopNav:overflow-y-auto overflow-x-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
@@ -49,9 +49,9 @@ export default function CalendarModal({
 
         {/*--- calendar ---*/}
         <DayPicker
-          className="text-lg md:text-sm"
+          className="w-full text-lg desktopNav:text-base"
           classNames={{
-            months: `w-full flex justify-evenly`,
+            months: `w-full flex justify-center gap-[32px]`,
             month: "relative",
             month_caption: `${defaultClassNames.month_caption} pb-[20px] flex items-center justify-center text-lg font-medium select-none`,
             // nav: `${defaultClassNames.nav}`,
@@ -60,7 +60,7 @@ export default function CalendarModal({
             chevron: `[14px] w-[24px] h-[24px]`,
             weekday: `font-medium text-slate-400`,
             day: `[&:not(.rdp-selected):hover]:bg-slate-200 rounded-full`,
-            day_button: `w-[45px] h-[45px] md:w-[42px] md:h-[42px] 850px:w-[50px] 850px:h-[50px] font-medium rounded-full cursor-pointer`,
+            day_button: `w-[45px] h-[45px] [@media(min-width:850px)_and_(min-height:480px)]:w-[50px] [@media(min-width:850px)_and_(min-height:480px)]:h-[50px] font-medium rounded-full cursor-pointer`,
             today: ``,
             selected: `${defaultClassNames.selected} font-bold rounded-full bg-slate-200`,
             range_start: `bg-black text-white rounded-full hover:bg-black`,
@@ -71,19 +71,19 @@ export default function CalendarModal({
           selected={dates}
           onSelect={(selected) => setDates(selected as DateRange)}
           fixedWeeks={true}
-          numberOfMonths={is750Up ? 2 : 1}
+          numberOfMonths={isDesktopNav ? 2 : 1}
           navLayout="around"
           disabled={{ before: new Date() }}
         />
 
         {/*--- date margin ---*/}
-        <div className="md:pl-[24px] my-auto w-full flex gap-[12px] md:gap-[8px] text-sm flex-wrap md:flex-nowrap">
+        <div className="desktopNav:pl-[24px] my-auto w-full flex gap-[12px] desktopNav:gap-[8px] text-sm flex-wrap desktopNav:flex-nowrap">
           {dateMargins.map((i) => (
             <button
               key={`margin${i.value}`}
               className={`${
                 dateMargin.value === i.value ? "ring-inset ring-[1.5px] ring-slate-700" : ""
-              } flex-none px-[16px] py-[12px] md:py-[8px] rounded-full border-slate-250 border-[1px] cursor-pointer`}
+              } flex-none px-[16px] py-[12px] desktopNav:py-[8px] rounded-full border-slate-250 border-[1px] cursor-pointer`}
               onClick={() => setDateMargin(i)}
             >
               {i.text}

@@ -29,6 +29,8 @@
   }
 }
 
+@custom-variant desktopNav (@media (min-width: 750px) and (min-height: 480px));
+
 @theme {
   --color-light1: #f9f9f9;
   --color-light2: #eef3f7;

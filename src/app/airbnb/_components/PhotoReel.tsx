@@ -72,7 +72,7 @@ export default function PhotoReel({ city, imageWidth }: { city: string; imageWid
       <div className="mt-[4px] md:mt-[8px] md:px-[32px]">
         <div
           ref={viewportRef}
-          className="px-[12px] md:px-0 scroll-pl-[12px] md:scroll-pl-0 flex gap-[12px] snap-x snap-mandatory overflow-x-auto touch-pan-x overflow-y-hidden select-none scrollbar-none"
+          className="px-[12px] md:px-0 scroll-pl-[12px] md:scroll-pl-0 flex gap-[12px] snap-x snap-mandatory overflow-x-auto overflow-y-hidden select-none scrollbar-none"
         >
           {cities[city].map((room, index) => (
             <div key={index} className="flex flex-col snap-start snap-always">

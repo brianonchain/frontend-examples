@@ -2,7 +2,7 @@ import { motion, type Transition, AnimatePresence } from "framer-motion";
 import { FaAirbnb } from "react-icons/fa";
 import { LuGlobe, LuAlignJustify } from "react-icons/lu";
 
-export default function TopBar({ selectedMenu, setSelectedMenu, mobileModal }: { selectedMenu: string; setSelectedMenu: (menu: string) => void; mobileModal: boolean }) {
+export default function IconBar({ selectedMenu, setSelectedMenu, mobileModal }: { selectedMenu: string; setSelectedMenu: (menu: string) => void; mobileModal: boolean }) {
   const items = ["Homes", "Experiences", "Services"];
   const spring: Transition = { type: "spring", stiffness: 400, damping: 12, mass: 0.8, restDelta: 0.001 };
 
@@ -10,7 +10,7 @@ export default function TopBar({ selectedMenu, setSelectedMenu, mobileModal }: {
     <AnimatePresence>
       <div className="mt-auto md:mt-[20px] mx-[32px] xs:mx-[50px] md:mx-0 w-full flex items-center">
         {/*--- logo ---*/}
-        <div className="hidden md:block w-1/4">
+        <div className="hidden desktopNav:block w-1/4">
           <FaAirbnb className="text-4xl text-red-500" />
         </div>
         {/*--- icons ---*/}
@@ -44,7 +44,7 @@ export default function TopBar({ selectedMenu, setSelectedMenu, mobileModal }: {
           ></div>
         </div>
         {/*--- options ---*/}
-        <div className="hidden md:flex w-1/4 justify-end items-center gap-[16px]">
+        <div className="hidden desktopNav:flex w-1/4 justify-end items-center gap-[16px]">
           <button className="hidden xl:block px-[20px] h-[40px] font-medium rounded-full bg-slate-100 hover:bg-slate-200 transition-all duration-300 ease-out">
             Become a host
           </button>
