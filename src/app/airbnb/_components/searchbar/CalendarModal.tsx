@@ -25,7 +25,7 @@ export default function CalendarModal({
 
   return (
     <div
-      className="flex-1 desktopNav:flex-auto pt-[18px] desktopNav:py-[24px] w-full h-full bg-white rounded-[16px] desktopNav:rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden"
+      className="flex-1 desktopNav:flex-auto pt-[18px] desktopNav:py-[24px] w-full h-full bg-white rounded-[16px] desktopNav:rounded-[24px] desktopNav:shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden"
       style={{ scrollbarGutter: "stable" }}
     >
       <motion.div

@@ -65,11 +65,14 @@ export default function MobileModal({
               </button>
             </div>
             {/*--- where ---*/}
-            <div
+            <motion.div
               className={`${
                 selectedSearch === "where" ? "min-h-0" : "min-h-[60px]"
-              } py-[18px] w-full flex flex-col bg-white rounded-2xl shadow-md transition-all duration-[500ms] ease-in-out`}
+              } py-[18px] w-full flex flex-col bg-white rounded-2xl shadow-md [transition:min-height_500ms_ease-in-out] z-[2]`}
               onClick={() => setSelectedSearch("where")}
+              initial={{ opacity: 0, translateY: "-80px" }}
+              animate={{ opacity: 1, translateY: "0px" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <div className={`${selectedSearch === "where" ? "overflow-y-auto" : ""} px-[20px] overflow-hidden`}>
                 {/*--- button / preview ---*/}
@@ -92,24 +95,28 @@ export default function MobileModal({
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
             {/*--- checkIn / checkOut ---*/}
             <motion.div
               className={`${
-                selectedSearch === "checkIn" ? "min-h-0" : "min-h-[60px]"
-              } py-[18px] w-full flex flex-col justify-center bg-white rounded-2xl shadow-md transition-all duration-[500ms] ease-in-out`}
+                selectedSearch === "checkIn" || selectedSearch === "checkOut" ? "min-h-0" : "min-h-[60px]"
+              } py-[18px] w-full flex flex-col justify-center bg-white rounded-2xl shadow-md [transition:min-height_500ms_ease-in-out]`}
               onClick={() => setSelectedSearch("checkIn")}
               initial={{ opacity: 0, translateY: "-80px" }}
               animate={{ opacity: 1, translateY: "0px" }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className={`${selectedSearch === "checkIn" ? "overflow-y-auto" : ""} px-[20px] overflow-hidden`}>
+              <div className={`${selectedSearch === "checkIn" || selectedSearch === "checkOut" ? "overflow-y-auto" : ""} px-[20px] overflow-hidden`}>
                 {/*--- button / preview ---*/}
                 <div className="flex-none flex items-center justify-between">
-                  <p className={`${selectedSearch === "checkIn" ? "text-black text-2xl" : "text-slate-500 text-base"} font-medium transition-all duration-[500ms] ease-in-out`}>
+                  <p
+                    className={`${
+                      selectedSearch === "checkIn" || selectedSearch === "checkOut" ? "text-black text-2xl" : "text-slate-500 text-base"
+                    } font-medium transition-all duration-[500ms] ease-in-out`}
+                  >
                     When{selectedSearch === "checkIn" ? "?" : ""}
                   </p>
-                  <p className="font-medium">
+                  <p className={`${selectedSearch === "checkIn" || selectedSearch === "checkOut" ? "opacity-0" : "opacity-100"} font-medium transition-all duration-0 ease-in-out`}>
                     {dates?.from
                       ? `${new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(dates.from)} \u2014 ${new Intl.DateTimeFormat("en-US", {
                           month: "short",
@@ -121,7 +128,7 @@ export default function MobileModal({
                 {/*--- modal ---*/}
                 <div
                   className={`${
-                    selectedSearch === "checkIn" ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    selectedSearch === "checkIn" || selectedSearch === "checkOut" ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   } grid [transition:opacity_300ms_ease-in-out,grid_500ms_ease-in-out]`}
                 >
                   <div className="overflow-hidden">
@@ -135,11 +142,11 @@ export default function MobileModal({
             <motion.div
               className={`${
                 selectedSearch === "who" ? "min-h-0" : "min-h-[60px]"
-              } flex-1 py-[18px] w-full flex flex-col bg-white rounded-2xl shadow-md transition-all duration-[500ms] ease-in-out`}
+              } py-[18px] w-full flex flex-col bg-white rounded-2xl shadow-md [transition:min-height_500ms_ease-in-out]`}
               onClick={() => setSelectedSearch("who")}
-              initial={{ opacity: 0, translateY: "-80px" }}
+              initial={{ opacity: 0, translateY: "-120px" }}
               animate={{ opacity: 1, translateY: "0px" }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <div className={`${selectedSearch === "who" ? "overflow-y-auto" : ""} px-[20px] overflow-hidden`}>
                 {/*--- button / preview ---*/}
@@ -147,7 +154,7 @@ export default function MobileModal({
                   <p className={`${selectedSearch === "who" ? "text-black text-2xl" : "text-slate-500 text-base"} font-medium transition-all duration-[500ms] ease-in-out`}>
                     Who{selectedSearch === "who" ? "?" : ""}
                   </p>
-                  <p className="font-medium">{whoText}</p>
+                  <p className={`${selectedSearch === "who" ? "opacity-0" : "opacity-100"} font-medium transition-all duration-0 ease-in-out`}>{whoText}</p>
                 </div>
                 {/*--- modal ---*/}
                 <div

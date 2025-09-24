@@ -50,7 +50,7 @@ export default function TitleIcons() {
           transition={{ duration: 4, ease: [0.19, 1, 0.22, 1], delay: 0.8, opacity: { duration: 0.1, delay: 0.8 } }}
           className="absolute left-[0%] z-10"
         >
-          <Image src="/icon1.svg" alt="icon1" width={60} height={60} />
+          <Image src="/github/icon1.svg" alt="icon1" width={60} height={60} />
         </motion.div>
         <motion.div
           initial={{ y: 350, rotate: 10, opacity: 0 }}
@@ -58,7 +58,7 @@ export default function TitleIcons() {
           transition={{ duration: 4, ease: [0.19, 1, 0.22, 1], delay: 1.2, opacity: { duration: 0.1, delay: 1.2 } }}
           className="absolute left-[40%] z-10"
         >
-          <Image src="/icon2.svg" alt="icon2" width={60} height={60} />
+          <Image src="/github/icon2.svg" alt="icon2" width={60} height={60} />
         </motion.div>
         <motion.div
           initial={{ y: 350, rotate: -10, opacity: 0 }}
@@ -66,7 +66,7 @@ export default function TitleIcons() {
           transition={{ duration: 4, ease: [0.19, 1, 0.22, 1], delay: 0.4, opacity: { duration: 0.1, delay: 0.4 } }}
           className="absolute left-[80%] z-10"
         >
-          <Image src="/icon3.svg" alt="icon3" width={60} height={60} />
+          <Image src="/github/icon3.svg" alt="icon3" width={60} height={60} />
         </motion.div>
 
         <motion.div

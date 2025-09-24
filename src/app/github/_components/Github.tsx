@@ -55,9 +55,9 @@ export default function Github() {
               }`}
             ></div>
           </div>
-          <select className="block md:hidden mt-10 p-2 gap-1 border border-slate-500 rounded-full font-medium relative">
+          <select className="block md:hidden mt-10 px-3 py-2 gap-1 border border-slate-500 rounded-full font-medium relative">
             {heroFunctions.map((i) => (
-              <option key={i.index} className="">
+              <option key={i.name} className="">
                 {i.name}
               </option>
             ))}

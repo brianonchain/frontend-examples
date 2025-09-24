@@ -18,7 +18,7 @@ export default function WhereModal({
   return (
     <AnimatePresence>
       <motion.div
-        className="flex-1 desktopNav:flex-auto desktopNav:py-[16px] w-full h-full bg-white rounded-[16px] desktopNav:rounded-[24px] shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden"
+        className="flex-1 desktopNav:flex-auto desktopNav:py-[16px] w-full h-full bg-white rounded-[16px] desktopNav:rounded-[24px] desktopNav:shadow-[0_2px_10px_rgba(0,0,0,0.15)] overflow-hidden"
         initial={{ y: !isDesktopNav && !mobileModal ? "-40px" : 0 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
